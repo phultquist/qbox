@@ -41,6 +41,6 @@ while True:
 Addison, here are some things I need you to clarify:
 1. What is LowPass? And what is the slope saying and the of makes no sense. I assume the function LowPass acts on something, in which you would do LowPass(of=ImportedAudioSignalStream, frequency="200hz", slope="something")
 2. What is all the things at the bottom?
-3. Also just so you know almost every language, including Python, uses lowerCamelCase not UpperCamelCase
+3. Also just so you know almost every language, including Python, uses `lowerCamelCase` not `UpperCamelCase`
 
 Pretty good pseudocode though.
