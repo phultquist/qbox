@@ -17,13 +17,13 @@ ElectromagneticStrength = 1
 #CompensationD = 1
 #PID parameters for Corrective pid loop
 
-While True:
+while True:
 #There is probably a better way to do this I just wanted to make it clear that this is a forever repeating loop.
 
   InputSignal = LowPass(frequency: 200hz, slope: 2nd order or 12db/octave) of (Imported Audio Signal Stream)
 #Importing current audio data and applying a lowpass filter to the signal
 
-  Return (ElectromagneticStrength * InputSignal - (Damping * Integral(InputSignal) + SpringCoefficient * Integral^2(InputSignal))
+  return (ElectromagneticStrength * InputSignal - (Damping * Integral(InputSignal) + SpringCoefficient * Integral^2(InputSignal))
 #Returns the input signal minus the driver forces, which theoretically creates a total net force on the driver that is proportional to InputSignal
   
   #Return (Input Signal + CompensationP * (InputSignal - TotalSignal) + CompensationI * Integral(InputSignal - TotalSignal) + CompensationI * Derivative(InputSignal - TotalSignal))
