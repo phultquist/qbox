@@ -1,3 +1,4 @@
+```python
 #By the way, all Constants are to be determined.
 
 SpringCoefficient = -1
@@ -25,3 +26,4 @@ For 1 == 1
   
   Return (Input Signal + CompensationP * (InputSignal - TotalSignal) + CompensationI * Integral(InputSignal - TotalSignal) + CompensationI * Derivative(InputSignal - TotalSignal))
 #Finally, the InputSignal plus the corrective factors are returned.
+```
