@@ -1,3 +1,5 @@
+# Operation Qbox Version 1
+This is the original version; Addison called me and said he figured out a simplified way to do this.
 ```python
 #By the way, all Constants are to be determined.
 
