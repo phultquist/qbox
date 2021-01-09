@@ -23,7 +23,7 @@ While 1 == 1
   InputSignal = LowPass(frequency: 200hz, slope: 2nd order or 12db/octave) of (Imported Audio Signal Stream)
 #Importing current audio data and applying a lowpass filter to the signal
 
-  Return (ElectromagneticStrength * InputSignal - (Damping * Integral(Total Signal) + SpringCoefficient * Integral^2(Total Signal))
+  Return (ElectromagneticStrength * InputSignal - (Damping * Integral(InputSignal) + SpringCoefficient * Integral^2(InputSignal))
 #Returns the input signal minus the driver forces, which theoretically creates a total net force on the driver that is proportional to InputSignal
 
 
