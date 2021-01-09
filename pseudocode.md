@@ -1,6 +1,8 @@
 # Pseudocode File
 
 ```python
+#By the way, all Constants are to be determined.
+
 SpringCoefficient = -1
 #Driver Spring Coefficient
 
