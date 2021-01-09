@@ -23,6 +23,15 @@ While 1 == 1
   InputSignal = LowPass(frequency: 200hz, slope: 2nd order or 12db/octave) of (Imported Audio Signal Stream)
 #Importing current audio data and applying a lowpass filter to the signal
 
+  Return (ElectromagneticStrength * InputSignal - (Damping * Integral(Total Signal) + SpringCoefficient * Integral^2(Total Signal))
+#Returns the input signal minus the driver forces, which theoretically creates a total net force on the driver that is proportional to InputSignal
+
+
+
+
+
+
+
   #TotalSignal = ElectromagneticStrength * TotalSignal + Damping * Integral(Total Signal) + SpringCoefficient * Integral^2(Total Signal) +   CompensationP * (InputSignal - TotalSignal) + CompensationI * Integral(InputSignal - TotalSignal) + CompensationI * Derivative(InputSignal - TotalSignal)
 #TotalSignal represents the total force on the driver at all times, which is ideally equal to InputSignal. The terms with ElectromagneticStrength, Damping, and SpringCoefficient represent the forces that create the resonant properties of the driver. The "Compensation" terms are the agressive, corrective PID loop that attempts to force TotalSignal to equal InputSignal. I assumed that you would know the most efficient way to calculate derivatives and integrals of a data stream, so I didn't try to approximate them.
   
