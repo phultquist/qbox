@@ -26,8 +26,6 @@ while True:
   return (ElectromagneticStrength * InputSignal - (Damping * Integral(InputSignal) + SpringCoefficient * Integral^2(InputSignal))
 #Returns the input signal minus the driver forces, which theoretically creates a total net force on the driver that is proportional to InputSignal
   
-  #Return (Input Signal + CompensationP * (InputSignal - TotalSignal) + CompensationI * Integral(InputSignal - TotalSignal) + CompensationI * Derivative(InputSignal - TotalSignal))
-#Finally, the InputSignal plus the corrective factors are returned.
 ```
 Addison, here are some things I need you to clarify:
 1. What is LowPass? And what is the slope saying and the of makes no sense. I assume the function LowPass acts on something, in which you would do LowPass(of=ImportedAudioSignalStream, frequency="200hz", slope="something"): I assume there is a DSP library that would include such a function, it's basically the most basic kind of filter possible. Slope is the rate at which the high frequencies decrease in relation to frequency. here's a visual of what that means: https://i218.photobucket.com/albums/cc178/daishi00/graphs_charts/bw_compare.jpg
