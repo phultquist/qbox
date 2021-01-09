@@ -17,7 +17,7 @@ ElectromagneticStrength = 1
 #CompensationD = 1
 #PID parameters for Corrective pid loop
 
-While 1 == 1
+While True:
 #There is probably a better way to do this I just wanted to make it clear that this is a forever repeating loop.
 
   InputSignal = LowPass(frequency: 200hz, slope: 2nd order or 12db/octave) of (Imported Audio Signal Stream)
@@ -38,3 +38,8 @@ While 1 == 1
   #Return (Input Signal + CompensationP * (InputSignal - TotalSignal) + CompensationI * Integral(InputSignal - TotalSignal) + CompensationI * Derivative(InputSignal - TotalSignal))
 #Finally, the InputSignal plus the corrective factors are returned.
 ```
+Addison, here are some things I need you to clarify:
+1. What is LowPass? And what is the slope saying and the of makes no sense. I assume the function LowPass acts on something, in which you would do LowPass(of=ImportedAudioSignalStream, frequency="200hz", slope="something")
+2. What is all the things at the bottom?
+
+Pretty good pseudocode though.
