@@ -1,8 +1,10 @@
 from scipy.io import wavfile
+from scipy import signal
 import matplotlib.pyplot as plt
+import numpy as np
 
 electromagnetic_strength = 10000
-damping = -100
+damping = -100*10
 spring_coefficient = -0.01
 
 samplerate, data = wavfile.read('./test.wav')
@@ -14,12 +16,14 @@ def integral(current, last):
 
 # data = [0,1,0,1,0,2,1]
 
+max_original = np.amax(np.absolute(data))
+
 data = [e * 0.001 for e in data]
 
-beg = 50000
-end = 60000
-# beg = 0
-# end = len(data)
+# beg = 50000
+# end = 60000
+beg = 0
+end = len(data)
 
 time=beg
 last_input_integral_1 = 0
@@ -45,15 +49,50 @@ while time<end:
 
     time += 1
 
-# plt.plot(values)
-# plt.show()
+#################
+### ADJUSTING ###
+#################
 
-fig, (ax1, ax2) = plt.subplots(2)
+sos = signal.butter(10, 20, "highpass", fs=samplerate, output="sos")
+filtered = signal.sosfilt(sos, values)
+
+buttered_original = signal.sosfilt(sos, data)
+
+buttered_adjusted = filtered
+unbuttered_adjusted = np.array(values)
+
+print(buttered_original)
+
+to_stabilize = buttered_adjusted
+
+max_adjusted = np.amax(np.absolute(to_stabilize))
+stabilized = (max_original / max_adjusted) * 0.99 * to_stabilize / 1000
+
+buttered_adjusted = stabilized
+print(stabilized)
+
+wavfile.write("output.wav", samplerate, stabilized)
+
+################
+### PLOTTING ###
+################
+
+fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, sharex=True)
 fig.suptitle('Original and Adjusted Waves')
+
 ax1.plot(data[beg:end])
 ax1.set_title("Original")
-ax2.plot(values)
-ax2.set_title("Adjusted")
+
+ax2.plot(unbuttered_adjusted)
+ax2.set_title("Unbuttered Adjusted")
+
+ax3.plot(buttered_adjusted)
+ax3.set_title("Buttered Adjusted")
+
+ax4.plot(buttered_original)
+ax4.set_title("Buttered Original")
+
+plt.tight_layout()
 plt.show()
 
 quit()
