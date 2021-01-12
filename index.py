@@ -7,7 +7,7 @@ electromagnetic_strength = 10000
 damping = -100*10
 spring_coefficient = -0.01
 
-samplerate, data = wavfile.read('./test.wav')
+samplerate, data = wavfile.read('./100hz.wav')
 print("Total Data Length:", len(data), ", Sample Rate:",samplerate)
 
 def integral(current, last):
@@ -61,15 +61,12 @@ buttered_original = signal.sosfilt(sos, data)
 buttered_adjusted = filtered
 unbuttered_adjusted = np.array(values)
 
-print(buttered_original)
-
 to_stabilize = buttered_adjusted
 
 max_adjusted = np.amax(np.absolute(to_stabilize))
 stabilized = (max_original / max_adjusted) * 0.99 * to_stabilize / 1000
 
 buttered_adjusted = stabilized
-print(stabilized)
 
 wavfile.write("output.wav", samplerate, stabilized)
 
@@ -87,7 +84,7 @@ ax2.plot(unbuttered_adjusted)
 ax2.set_title("Unbuttered Adjusted")
 
 ax3.plot(buttered_adjusted)
-ax3.set_title("Buttered Adjusted")
+ax3.set_title("Buttered Adjusted (Output)")
 
 ax4.plot(buttered_original)
 ax4.set_title("Buttered Original")
@@ -95,5 +92,4 @@ ax4.set_title("Buttered Original")
 plt.tight_layout()
 plt.show()
 
-quit()
 # return (ElectromagneticStrength * InputSignal - (Damping * Integral(InputSignal) + SpringCoefficient * Integral(Integral(InputSignal)))
