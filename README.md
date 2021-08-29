@@ -1,2 +1,2 @@
 # qbox
-Something special in the making
+Computational Audio Project
